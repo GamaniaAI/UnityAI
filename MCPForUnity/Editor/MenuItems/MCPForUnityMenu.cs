@@ -1,3 +1,4 @@
+using MCPForUnity.Editor.Dependencies;
 using MCPForUnity.Editor.Setup;
 using MCPForUnity.Editor.Windows;
 using UnityEditor;
@@ -18,6 +19,13 @@ namespace MCPForUnity.Editor.MenuItems
             {
                 MCPForUnityEditorWindow.ShowWindow();
             }
+        }
+
+        // 根據使用者驗證狀態控制ToggleMCPWindow選單項的啟用/停用
+        [MenuItem("Window/MCP For Unity/Toggle MCP Window %#m", true, priority = 1)]
+        public static bool ValidateToggleMCPWindow()
+        {
+            return LicenseValidator.IsUserValid();
         }
 
         [MenuItem("Window/MCP For Unity/Local Setup Window", priority = 2)]

@@ -402,6 +402,26 @@ namespace MCPForUnity.Editor.Services
         }
 
         /// <summary>
+        /// Record server usage by sending email to Firebase
+        /// </summary>
+        private void RecordServerUsage()
+        {
+            try
+            {
+                string email = Dependencies.LicenseValidator.GetStoredEmail();
+                if (!string.IsNullOrEmpty(email))
+                {
+                    Dependencies.LicenseValidator.RecordUsage(email);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Don't fail server start if usage recording fails
+                McpLog.Warn($"Failed to record usage: {ex.Message}");
+            }
+        }
+
+        /// <summary>
         /// Start the local HTTP server in a separate terminal window.
         /// Stops any existing server on the port and clears the uvx cache first.
         /// </summary>
@@ -488,6 +508,10 @@ namespace MCPForUnity.Editor.Services
                         StoreLocalHttpServerHandshake(pidFilePath, instanceToken);
                     }
                     McpLog.Info($"Started local HTTP server in terminal: {launchCommand}");
+                    
+                    // Record usage for analytics
+                    RecordServerUsage();
+                    
                     return true;
                 }
                 catch (Exception ex)
