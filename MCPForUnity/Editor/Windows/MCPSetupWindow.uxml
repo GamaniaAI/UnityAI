@@ -49,6 +49,34 @@
             </ui:VisualElement>
         </ui:VisualElement>
         
+        <!-- User Verification Section -->
+        <ui:VisualElement class="section">
+            <ui:Label text="使用者驗證" class="section-title" />
+            <ui:VisualElement class="section-content">
+                <ui:Label text="請輸入您的 Email 以使用 MCP for Unity" class="help-text description-text" />
+                
+                <!-- Email Input -->
+                <ui:VisualElement class="setting-row">
+                    <ui:Label text="Email:" class="setting-label" />
+                    <ui:TextField name="email-field" class="setting-value-field" />
+                </ui:VisualElement>
+                
+                <!-- Status Row -->
+                <ui:VisualElement class="dependency-item">
+                    <ui:VisualElement class="dependency-row">
+                        <ui:Label text="狀態:" class="dependency-name" />
+                        <ui:Label name="email-status-label" text="未驗證" class="setting-value" />
+                        <ui:VisualElement name="email-status-indicator" class="status-indicator-small" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                
+                <!-- Action Button -->
+                <ui:VisualElement class="install-links-row">
+                    <ui:Button name="validate-email-button" text="驗證" class="secondary-button install-link-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
         <!-- Action Buttons -->
         <ui:VisualElement class="button-container">
             <ui:Button name="refresh-button" text="Refresh" class="setup-button secondary-button" />
