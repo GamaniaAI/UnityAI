@@ -171,7 +171,9 @@ namespace MCPForUnity.Editor.Helpers
                 return "mcpforunityserver";
             }
 
-            return $"mcpforunityserver=={version}";
+            // Strip custom version suffix (e.g., "9.0.7-1" -> "9.0.7") to match PyPI base version
+            string baseVersion = version.Split('-')[0];
+            return $"mcpforunityserver=={baseVersion}";
         }
 
         /// <summary>
